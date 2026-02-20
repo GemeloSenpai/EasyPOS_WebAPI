@@ -12,5 +12,5 @@ public class ApplicationAssemblyReference
     /// Referencia estática al ensamblado actual de Application.
     /// Usada por MediatR para descubrir handlers y eventos.
     /// </summary>
-    internal static readonly Assembly Assembly = typeof(ApplicationAssemblyReference).Assembly;
+    public static readonly Assembly Assembly = typeof(ApplicationAssemblyReference).Assembly;
 }
