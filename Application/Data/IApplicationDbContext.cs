@@ -1,5 +1,5 @@
 using Domain.Customers;
-using Domain.EntityFramework;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Data;
 
