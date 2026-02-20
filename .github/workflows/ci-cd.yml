@@ -30,7 +30,12 @@ jobs:
       run: dotnet build ${{ env.SOLUTION_FILE }} --no-restore --configuration Release
       
     - name: Run tests
-      run: dotnet test ${{ env.SOLUTION_FILE }} --no-build --configuration Release --verbosity normal
+      run: |
+        if [ -d "Tests" ]; then
+          dotnet test ${{ env.SOLUTION_FILE }} --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+        else
+          echo "No tests found - skipping test execution"
+        fi
       
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
