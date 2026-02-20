@@ -2,35 +2,88 @@ namespace Domain.ValueObjects;
 
 /// <summary>
 /// Value Object para representar una dirección postal completa.
-/// Los Value Objects son objetos inmutables que representan
-/// conceptos del dominio y se comparan por valor.
+/// Implementado como partial record para flexibilidad en la estructura.
+/// Los Value Objects son objetos inmutables que representan conceptos del dominio.
 /// </summary>
-/// <param name="Street">Calle y número de la dirección</param>
-/// <param name="City">Ciudad de la dirección</param>
-/// <param name="State">Estado o provincia</param>
-/// <param name="ZipCode">Código postal</param>
-/// <param name="Country">País (opcional, por defecto vacío)</param>
-public record Address(
-    string Street,
-    string City, 
-    string State,
-    string ZipCode,
-    string Country = ""
-)
+/// <remarks>
+/// Esta versión utiliza propiedades individuales en lugar de parámetros posicionales
+/// para mayor flexibilidad en la creación y validación.
+/// </remarks>
+public partial record Address
 {
     /// <summary>
-    /// Método fábrica para crear una instancia de Address.
+    /// Constructor para inicializar una nueva instancia de Address.
+    /// Establece todas las propiedades de la dirección.
+    /// </summary>
+    /// <param name="country">País de residencia</param>
+    /// <param name="line1">Primera línea de dirección (calle y número)</param>
+    /// <param name="line2">Segunda línea de dirección (apartamento, suite, etc.)</param>
+    /// <param name="city">Ciudad de residencia</param>
+    /// <param name="state">Estado o provincia</param>
+    /// <param name="zipCode">Código postal</param>
+    public Address(string country, string line1, string line2, string city, string state, string zipCode) 
+    {
+        Country = country;
+        Line1 = line1;
+        Line2 = line2;
+        City = city;
+        State = state;
+        ZipCode = zipCode;
+    }
+
+    /// <summary>
+    /// País de residencia del cliente.
+    /// Propiedad init-only para inmutabilidad.
+    /// </summary>
+    public string Country { get; init; }
+    
+    /// <summary>
+    /// Primera línea de dirección (calle y número).
+    /// Propiedad init-only para inmutabilidad.
+    /// </summary>
+    public string Line1 { get; init; }
+    
+    /// <summary>
+    /// Segunda línea de dirección (apartamento, suite, etc.).
+    /// Propiedad init-only para inmutabilidad.
+    /// Puede ser vacía si no aplica.
+    /// </summary>
+    public string Line2 { get; init; }
+    
+    /// <summary>
+    /// Ciudad de residencia.
+    /// Propiedad init-only para inmutabilidad.
+    /// </summary>
+    public string City { get; init; }
+    
+    /// <summary>
+    /// Estado o provincia.
+    /// Propiedad init-only para inmutabilidad.
+    /// </summary>
+    public string State { get; init; }
+    
+    /// <summary>
+    /// Código postal.
+    /// Propiedad init-only para inmutabilidad.
+    /// </summary>
+    public string ZipCode { get; init; }
+
+    /// <summary>
+    /// Método fábrica para crear una instancia de Address con validación.
     /// Valida que todos los campos requeridos no sean nulos o vacíos.
     /// </summary>
-    /// <param name="street">Calle y número</param>
-    /// <param name="city">Ciudad</param>
-    /// <param name="state">Estado</param>
-    /// <param name="zipCode">Código postal</param>
-    /// <param name="country">País (opcional)</param>
+    /// <param name="country">País (requerido)</param>
+    /// <param name="line1">Primera línea (requerida)</param>
+    /// <param name="line2">Segunda línea (opcional)</param>
+    /// <param name="city">Ciudad (requerida)</param>
+    /// <param name="state">Estado (requerido)</param>
+    /// <param name="zipCode">Código postal (requerido)</param>
     /// <returns>Address válido o null si es inválido</returns>
-    public static Address? Create(string street, string city, string state, string zipCode, string country = "")
+    public static Address? Create(string country, string line1, string line2, string city, string state, string zipCode)
     {
-        if (string.IsNullOrWhiteSpace(street) || 
+        // Validar campos requeridos
+        if (string.IsNullOrWhiteSpace(country) || 
+            string.IsNullOrWhiteSpace(line1) || 
             string.IsNullOrWhiteSpace(city) || 
             string.IsNullOrWhiteSpace(state) || 
             string.IsNullOrWhiteSpace(zipCode))
@@ -38,14 +91,45 @@ public record Address(
             return null;
         }
         
-        return new Address(street.Trim(), city.Trim(), state.Trim(), zipCode.Trim(), country?.Trim() ?? "");
+        // Crear instancia con datos limpios
+        return new Address(
+            country.Trim(), 
+            line1.Trim(), 
+            line2?.Trim() ?? "", 
+            city.Trim(), 
+            state.Trim(), 
+            zipCode.Trim()
+        );
     }
-    
+
     /// <summary>
     /// Dirección completa formateada en una sola línea.
     /// Propiedad calculada para facilitar visualización.
     /// </summary>
-    public string FullAddress => string.IsNullOrEmpty(Country) 
-        ? $"{Street}, {City}, {State} {ZipCode}"
-        : $"{Street}, {City}, {State} {ZipCode}, {Country}";
+    /// <returns>Dirección completa formateada</returns>
+    public string FullAddress 
+    { 
+        get 
+        { 
+            var parts = new List<string> { Line1 };
+            
+            if (!string.IsNullOrWhiteSpace(Line2))
+                parts.Add(Line2);
+                
+            parts.Add(City);
+            parts.Add(State);
+            parts.Add(ZipCode);
+            
+            if (!string.IsNullOrWhiteSpace(Country))
+                parts.Add(Country);
+                
+            return string.Join(", ", parts);
+        }
+    }
 }
+
+
+    
+
+
+
