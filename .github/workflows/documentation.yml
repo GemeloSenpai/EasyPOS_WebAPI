@@ -1,0 +1,61 @@
+name: Documentation Check
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'Documentation/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'Documentation/**'
+
+jobs:
+  check-documentation:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check documentation files
+      run: |
+        echo "📚 Checking documentation files..."
+        
+        # Verificar que archivos principales existan
+        if [ ! -f "Documentation/README.md" ]; then
+          echo "❌ README.md not found"
+          exit 1
+        fi
+        
+        if [ ! -f "Documentation/COMANDOS.md" ]; then
+          echo "❌ COMANDOS.md not found"
+          exit 1
+        fi
+        
+        if [ ! -f "Documentation/ARQUITECTURA.md" ]; then
+          echo "❌ ARQUITECTURA.md not found"
+          exit 1
+        fi
+        
+        echo "✅ All documentation files exist"
+        
+        # Verificar que los archivos tengan contenido
+        if [ ! -s "Documentation/README.md" ]; then
+          echo "❌ README.md is empty"
+          exit 1
+        fi
+        
+        echo "✅ Documentation files have content"
+        
+    - name: Check markdown syntax
+      run: |
+        echo "🔍 Checking markdown syntax..."
+        
+        # Instalar markdown linter
+        npm install -g markdownlint-cli
+        
+        # Verificar sintaxis de archivos markdown
+        find Documentation/ -name "*.md" -exec markdownlint {} \;
+        
+        echo "✅ Markdown syntax is valid"

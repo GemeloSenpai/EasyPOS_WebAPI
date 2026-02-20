@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore EasyPOS.slnx
+      
+    - name: Build solution
+      run: dotnet build EasyPOS.slnx --configuration Release --no-restore
+      
+    - name: Publish Web API
+      run: |
+        dotnet publish Web.API/Web.API.csproj \
+          --configuration Release \
+          --output ./publish \
+          --self-contained false \
+          --runtime linux-x64
+          
+    - name: Create release zip
+      run: |
+        cd publish
+        zip -r ../EasyPOS-Web-API-${{ github.ref_name }}.zip .
+        
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: EasyPOS Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+        
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./EasyPOS-Web-API-${{ github.ref_name }}.zip
+        asset_name: EasyPOS-Web-API-${{ github.ref_name }}.zip
+        asset_content_type: application/zip
