@@ -47,3 +47,8 @@ C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWe
 C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
 C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
 C:\Proyectos_C#\EasyPOS\Web.API\obj\Debug\net10.0\Web.API.sourcelink.json
+C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\FluentValidation.dll
+C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\FluentValidation.AspNetCore.dll
+C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll

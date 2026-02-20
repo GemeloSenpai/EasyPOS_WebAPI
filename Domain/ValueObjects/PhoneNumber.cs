@@ -7,12 +7,12 @@ namespace Domain.ValueObjects;
 /// Los Value Objects son objetos inmutables que representan
 /// conceptos del dominio y se comparan por valor.
 /// </summary>
-public partial record PhoneNumber
+public record PhoneNumber
 {
     /// <summary>
-    /// Longitud por defecto para números de teléfono (9 dígitos).
+    /// Longitud por defecto para números de teléfono (8 dígitos).
     /// </summary>
-    private const int DefaultLength = 9;
+    private const int DefaultLength = 8;
 
     /// <summary>
     /// Patrón de expresión regular para validar formato de teléfono.
@@ -51,10 +51,10 @@ public partial record PhoneNumber
     public string Value { get; init; }
 
     /// <summary>
-    /// Método parcial para generar la expresión regular.
-    /// Usando partial para optimización del compilador.
+    /// Método estático para generar la expresión regular.
+    /// Implementación para compilación optimizada.
     /// </summary>
     /// <returns>Regex compilada para validación</returns>
-    private static partial Regex PhoneNumberRegex();
+    private static Regex PhoneNumberRegex() => new(Pattern, RegexOptions.Compiled);
 }
 
