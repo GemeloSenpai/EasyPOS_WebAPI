@@ -10,3 +10,4 @@ C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\refint\Domain.dll
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.pdb
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\ref\Domain.dll
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.csproj.AssemblyReference.cache
+C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.sourcelink.json
