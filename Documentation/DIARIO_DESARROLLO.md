@@ -175,10 +175,21 @@ if (app.Environment.IsDevelopment())
 2. **Minimal API:** Configuración simplificada pero requiere configuración explícita
 3. **Development Environment:** Configuraciones específicas para desarrollo vs producción
 
+### **Domain-Driven Design (DDD):**
+1. **Aggregate Root:** Controla el acceso a entidades relacionadas
+2. **Domain Events:** Desacoplan acciones secundarias del negocio principal
+3. **Unit of Work:** Maneja transacciones de forma atómica
+4. **MediatR Integration:** Facilita el manejo asíncrono de eventos
+
 ### **Documentación:**
 1. **Documentar al Momento:** Es más fácil documentar mientras se desarrolla
 2. **Comandos Exactos:** Importante registrar los comandos exactos utilizados
 3. **Problemas y Soluciones:** Documentar los desafíos y cómo se resolvieron
+
+### **Git y Control de Versiones:**
+1. **Commits Descriptivos:** Usar convenciones claras para mensajes
+2. **Documentación en Código:** Comentarios XML para mejor mantenibilidad
+3. **Repositorio Centralizado:** GitHub como backup y portafolio
 
 ---
 
@@ -190,6 +201,9 @@ if (app.Environment.IsDevelopment())
 - ✅ API REST funcional con Swagger
 - ✅ Documentación completa del proyecto
 - ✅ Endpoint de ejemplo funcionando
+- ✅ Primitivas de dominio DDD implementadas
+- ✅ Control de versiones con Git/GitHub
+- ✅ Comentarios XML en código fuente
 
 ### **Componentes Técnicos:**
 - ✅ .NET 10.0 SDK
@@ -197,6 +211,9 @@ if (app.Environment.IsDevelopment())
 - ✅ Swagger/OpenAPI documentation
 - ✅ Clean Architecture pattern
 - ✅ Dependency Injection
+- ✅ Domain-Driven Design (DDD) patterns
+- ✅ MediatR para manejo de eventos
+- ✅ Git/GitHub para control de versiones
 
 ### **URLs de Acceso:**
 - **API Base:** `http://localhost:5229`

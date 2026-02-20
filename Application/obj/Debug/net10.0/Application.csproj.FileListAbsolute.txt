@@ -13,3 +13,4 @@ C:\Proyectos_C#\EasyPOS\Application\obj\Debug\net10.0\Application.dll
 C:\Proyectos_C#\EasyPOS\Application\obj\Debug\net10.0\refint\Application.dll
 C:\Proyectos_C#\EasyPOS\Application\obj\Debug\net10.0\Application.pdb
 C:\Proyectos_C#\EasyPOS\Application\obj\Debug\net10.0\ref\Application.dll
+C:\Proyectos_C#\EasyPOS\Application\obj\Debug\net10.0\Application.sourcelink.json

@@ -46,3 +46,4 @@ C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\Microsoft.IdentityModel.Abstra
 C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
 C:\Proyectos_C#\EasyPOS\Web.API\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+C:\Proyectos_C#\EasyPOS\Web.API\obj\Debug\net10.0\Web.API.sourcelink.json

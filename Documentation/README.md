@@ -9,6 +9,8 @@
 - [API REST Endpoints](#api-rest-endpoints)
 - [Configuración de Swagger](#configuración-de-swagger)
 - [Endpoints Actuales](#endpoints-actuales)
+- [Primitivas de Dominio](#primitivas-de-dominio)
+- [Diario de Desarrollo](#diario-de-desarrollo)
 
 ---
 
@@ -211,6 +213,60 @@ GET /weatherforecast
 - Autenticación
 
 **Documentación completa:** [ENDPOINTS_ACTUALES.md](ENDPOINTS_ACTUALES.md)
+
+---
+
+## 🏗️ Primitivas de Dominio
+
+### **Patrones DDD Implementados:**
+- ✅ **DomainEvent**: Base para eventos de dominio con MediatR
+- ✅ **AggregateRoot**: Raíz de agregado con manejo de eventos
+- ✅ **IUnitOfWork**: Unidad de trabajo para transacciones
+
+### **Características Principales:**
+- **Eventos asíncronos** con MediatR
+- **Transacciones atómicas** con Unit of Work
+- **Documentación XML** en código fuente
+- **Clean Architecture** sin dependencias externas
+
+### **Componentes Técnicos:**
+```csharp
+// Base para eventos
+public record DomainEvent(Guid Id): INotification;
+
+// Raíz de agregado
+public abstract class AggregateRoot
+{
+    protected void Raise(DomainEvent domainEvent) { }
+    public ICollection<DomainEvent> GetDomainEvents() { }
+}
+
+// Unidad de trabajo
+public interface IUnitOfWork
+{
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+}
+```
+
+**Documentación completa:** [PRIMITIVAS_DOMINIO.md](PRIMITIVAS_DOMINIO.md)
+
+---
+
+## 📖 Diario de Desarrollo
+
+### **Registro del Proyecto:**
+- **Día 1**: Configuración inicial y Swagger
+- **Clean Architecture**: Estructura y dependencias
+- **DDD Patterns**: Primitivas de dominio implementadas
+- **Git/GitHub**: Control de versiones configurado
+
+### **Lecciones Aprendidas:**
+- Diferencia entre OpenAPI y Swagger
+- Patrones de Domain-Driven Design
+- Mejores prácticas de documentación
+- Flujo de trabajo con Git
+
+**Documentación completa:** [DIARIO_DESARROLLO.md](DIARIO_DESARROLLO.md)
 
 ---
 
