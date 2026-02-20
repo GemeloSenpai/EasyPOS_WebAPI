@@ -22,7 +22,7 @@ namespace Application.Customers.Create;
 /// Implementa IRequest&lt;Unit&gt; para indicar que no retorna valor específico,
 /// solo confirma la operación completada.
 /// </remarks>
-public class CreateCustomerCommand(
+public record CreateCustomerCommand(
     string Name,
     string LastName,
     string Email,
@@ -33,4 +33,4 @@ public class CreateCustomerCommand(
     string City,
     string State,
     string ZipCode
-) : IRequest<Unit>
+) : IRequest<Unit>;

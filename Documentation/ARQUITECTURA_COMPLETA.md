@@ -437,14 +437,54 @@ public interface IApplicationDbContext
 ### **🎯 Propósito:**
 Implementa **contratos** definidos en las capas superiores. Contiene acceso a datos, servicios externos, etc.
 
-### **📦 Componentes (Planificados):**
+### **📦 Componentes:**
 ```csharp
 📁 Infrastructure/
-├── 📁 Data/
-│   ├── 📄 ApplicationDbContext.cs    🗄️ Implementación EF
-│   └── 📄 Configurations/          🗄️ Mapeos EF
-└── 📁 Repositories/
-    └── 📄 CustomerRepository.cs      📦 Implementación
+├── 📁 Percistence/
+│   ├── 📄 ApplicationDbContext.cs    🗄️ Contexto EF
+│   └── 📁 Repositories/              📦 Implementaciones
+│       └── 📄 CustomerRepository.cs  🏪 Repositorio de Clientes
+└── 📁 Data/
+    └── 📄 Configurations/          🗄️ Mapeos EF (futuro)
+```
+
+#### **1. CustomerRepository.cs - Implementación de Repositorio**
+```csharp
+/// <summary>
+/// Implementación del repositorio de clientes usando Entity Framework.
+/// Conecta la capa de dominio con la persistencia en base de datos.
+/// Implementa el patrón Repository para abstraer el acceso a datos.
+/// </summary>
+public class CustomerRepository : ICustomerRepository
+{
+    /// <summary>
+    /// Contexto de base de datos de Entity Framework.
+    /// Proporciona acceso a las tablas y operaciones CRUD.
+    /// </summary>
+    private readonly ApplicationDbContext _context;
+
+    /// <summary>
+    /// Constructor con inyección de dependencias.
+    /// </summary>
+    public CustomerRepository(ApplicationDbContext context)
+    {
+        _context = context ?? throw new ArgumentNullException(nameof(context));
+    }
+
+    /// <summary>
+    /// Agrega un nuevo cliente a la base de datos.
+    /// Operación asíncrona para mejor performance.
+    /// </summary>
+    public async Task Add(Customer customer) => 
+        await _context.Customers.AddAsync(customer);
+
+    /// <summary>
+    /// Obtiene un cliente por su identificador único.
+    /// Usa SingleOrDefaultAsync para búsquedas eficientes.
+    /// </summary>
+    public async Task<Customer?> GetByAsync(CustomerId id) => 
+        await _context.Customers.SingleOrDefaultAsync(c => c.Id == id);
+}
 ```
 
 ---
@@ -699,24 +739,24 @@ customer.Raise(new CustomerCreatedEvent(customer.Id));
 
 ### **✅ Completado:**
 - 🏛️ **Domain Layer**: Entidades, ValueObjects, Primitives
-- 🎯 **Application Layer**: DependencyInjection, DbContext
+- 🎯 **Application Layer**: DependencyInjection, DbContext, CQRS Commands
+- 🔨 **Infrastructure Layer**: Repositorios y DbContext implementados
 - 🌐 **Web.API Layer**: Configuración básica, Swagger
 - 🧪 **Tests Layer**: Pruebas unitarias de dominio
 - 🔄 **CI/CD**: GitHub Actions funcionales
 - 📚 **Documentación**: Completa y actualizada
 
 ### **⏳ En Progreso:**
-- 🔨 **Infrastructure Layer**: Implementación de repositorios
-- 🚀 **CQRS**: Commands, Queries, Handlers
-- 🗄️ **Database**: Entity Framework configuration
+- � **CQRS Queries**: Implementación de consultas
+- 🗄️ **Database**: Migrations y seeding
 - 🔐 **Authentication**: JWT o Identity
 - 📊 **Logging**: Configuración completa
 
 ### **🎯 Próximos Pasos:**
-1. **Implementar Infrastructure**: Repositorios y DbContext
-2. **Crear Commands/Queries**: CQRS completo
-3. **Configurar Database**: Migrations y seeding
-4. **Agregar Authentication**: Seguridad
+1. **Implementar Queries**: GetCustomerByIdQuery, GetAllCustomersQuery
+2. **Crear Controller**: CustomersController con endpoints REST
+3. **Configurar Database**: Migrations y datos iniciales
+4. **Agregar Authentication**: Seguridad JWT
 5. **Mejorar Tests**: Integración y end-to-end
 
 ---
