@@ -198,6 +198,153 @@ public class UnitOfWork : IUnitOfWork
 
 ---
 
+## 🏗️ **Entidades de Dominio Implementadas**
+
+### **4. Customer.cs - Entidad Principal**
+```csharp
+namespace Domain.Customers;
+
+/// <summary>
+/// Entidad de dominio que representa un cliente en el sistema.
+/// Esta entidad representa la lógica de negocio, no la tabla de la base de datos.
+/// Hereda de AggregateRoot para manejar eventos de dominio.
+/// </summary>
+public sealed class Customer : AggregateRoot
+{
+    /// <summary>
+    /// Constructor principal para crear una nueva instancia de Customer.
+    /// Valida y asigna todos los valores requeridos.
+    /// </summary>
+    public Customer(CustomerId id, string name, string lastName, string email, 
+        PhoneNumber phoneNumber, Address address, bool active) { }
+    
+    /// <summary>
+    /// Constructor privado vacío requerido por Entity Framework.
+    /// No debe usarse para creación manual de instancias.
+    /// </summary>
+    private Customer() { }
+    
+    public CustomerId Id { get; private set; }
+    public string Name { get; private set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty; // Diseño actual permite modificación
+    public string FullName => $"{Name} {LastName}";
+    public string email { get; private set; } = string.Empty;
+    public PhoneNumber PhoneNumber { get; private set; }
+    public Address Address { get; private set; }
+    public bool Active { get; private set; }
+}
+```
+
+#### **🎯 Características:**
+- ✅ **Hereda de AggregateRoot**: Para manejo de eventos
+- ✅ **Constructor principal**: Validación y asignación
+- ✅ **Constructor vacío**: Para Entity Framework
+- ✅ **Propiedades encapsuladas**: Control de acceso
+- ✅ **FullName calculado**: Propiedad derivada
+- ✅ **Comentarios XML**: Documentación profesional
+
+---
+
+### **5. CustomerId.cs - Strongly Typed ID**
+```csharp
+namespace Domain.Customers;
+
+/// <summary>
+/// Identificador fuertemente tipado para la entidad Customer.
+/// Implementado como record para garantizar inmutabilidad y comparación por valor.
+/// Evita el uso de primitivos (Guid) directamente en el dominio.
+/// </summary>
+/// <param name="Value">Valor GUID del identificador único</param>
+public record CustomerId(Guid Value);
+```
+
+#### **🎯 Características:**
+- ✅ **Strongly Typed**: Evita errores con primitivos
+- ✅ **Record Type**: Inmutable por naturaleza
+- ✅ **Simple y Limpio**: Sin complejidad innecesaria
+- ✅ **Comentarios XML**: Documentación clara
+
+---
+
+### **6. ICustomerRepository.cs - Interfaz de Repositorio**
+```csharp
+namespace Domain.Customers;
+
+/// <summary>
+/// Interfaz de repositorio para la entidad Customer.
+/// Define el contrato para operaciones de persistencia de clientes.
+/// Sigue el patrón Repository para desacoplar el dominio de la infraestructura.
+/// </summary>
+public interface ICustomerRepository
+{
+    /// <summary>
+    /// Obtiene un cliente por su identificador único.
+    /// Operación asíncrona para mejor performance.
+    /// </summary>
+    /// <param name="id">Identificador único del cliente</param>
+    /// <returns>Cliente encontrado o null si no existe</returns>
+    Task<Customer?> GetByIdAsync(CustomerId id);
+    
+    /// <summary>
+    /// Agrega un nuevo cliente al repositorio.
+    /// Operación asíncrona para persistencia en base de datos.
+    /// </summary>
+    /// <param name="customer">Entidad Customer a persistir</param>
+    /// <returns>Tarea completada cuando se guarda el cliente</returns>
+    Task Add(Customer customer);
+}
+```
+
+#### **🎯 Características:**
+- ✅ **Interfaz limpia**: Sin dependencias externas
+- ✅ **Métodos asíncronos**: Para mejor performance
+- ✅ **Tipado fuerte**: Usa CustomerId en lugar de Guid
+- ✅ **Comentarios XML**: Documentación completa
+- ✅ **Patrón Repository**: Contrato claro para implementación
+
+---
+
+## 📦 **Value Objects Implementados**
+
+### **7. PhoneNumber.cs - Número de Teléfono**
+```csharp
+namespace Domain.ValueObjects;
+
+/// <summary>
+/// Value Object para representar un número de teléfono válido.
+/// Los Value Objects son objetos inmutables que representan
+/// conceptos del dominio y se comparan por valor.
+/// </summary>
+public partial record PhoneNumber
+{
+    private const int DefaultLength = 9;
+    private const string Pattern = @"^(?:-*\d-*){8}$";
+
+    private PhoneNumber(string value) => Value = value;
+
+    public static PhoneNumber? Create(string value)
+    {
+        if (string.IsNullOrEmpty(value) || !PhoneNumberRegex().IsMatch(value) || value.Length != DefaultLength)
+        {
+            return null;
+        }
+           
+        return new PhoneNumber(value);
+    }
+
+    public string Value { get; init; }
+    private static partial Regex PhoneNumberRegex();
+}
+```
+
+#### **🎯 Características:**
+- ✅ **Validación**: Expresión regular
+- ✅ **Factory Method**: Create() con validación
+- ✅ **Inmutable**: Record type con init
+- ✅ **Partial Regex**: Optimización del compilador
+
+---
+
 ## 🔄 **Flujo de Trabajo Completo**
 
 ### **Secuencia de Operaciones:**
