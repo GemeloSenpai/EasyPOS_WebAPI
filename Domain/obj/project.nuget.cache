@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "A0VmjJsL1fQ=",
+  "dgSpecHash": "lNVivXm7rAc=",
   "success": true,
   "projectFilePath": "C:\\Proyectos_C#\\EasyPOS\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Manuel Lopez Valerio\\.nuget\\packages\\erroror\\2.0.1\\erroror.2.0.1.nupkg.sha512",
     "C:\\Users\\Manuel Lopez Valerio\\.nuget\\packages\\mediatr\\14.0.0\\mediatr.14.0.0.nupkg.sha512",
     "C:\\Users\\Manuel Lopez Valerio\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\Manuel Lopez Valerio\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",

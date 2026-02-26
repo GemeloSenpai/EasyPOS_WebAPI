@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "P+8h/OxGVMQ=",
+  "dgSpecHash": "EJIzENxTvKc=",
   "success": true,
   "projectFilePath": "C:\\Proyectos_C#\\EasyPOS\\Web.API\\Web.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Manuel Lopez Valerio\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Manuel Lopez Valerio\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
+    "C:\\Users\\Manuel Lopez Valerio\\.nuget\\packages\\erroror\\2.0.1\\erroror.2.0.1.nupkg.sha512",
     "C:\\Users\\Manuel Lopez Valerio\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\Manuel Lopez Valerio\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.1\\fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
     "C:\\Users\\Manuel Lopez Valerio\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",

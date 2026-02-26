@@ -1,13 +1,13 @@
 C:\Proyectos_C#\EasyPOS\Domain\bin\Debug\net10.0\Domain.deps.json
 C:\Proyectos_C#\EasyPOS\Domain\bin\Debug\net10.0\Domain.dll
 C:\Proyectos_C#\EasyPOS\Domain\bin\Debug\net10.0\Domain.pdb
+C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.csproj.AssemblyReference.cache
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.AssemblyInfoInputs.cache
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.AssemblyInfo.cs
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.csproj.CoreCompileInputs.cache
+C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.sourcelink.json
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.dll
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\refint\Domain.dll
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.pdb
 C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\ref\Domain.dll
-C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.csproj.AssemblyReference.cache
-C:\Proyectos_C#\EasyPOS\Domain\obj\Debug\net10.0\Domain.sourcelink.json

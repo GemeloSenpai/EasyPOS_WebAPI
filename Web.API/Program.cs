@@ -3,7 +3,7 @@ using Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -62,6 +62,21 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+// Health checks
+app.MapGet("/health", () => Results.Ok(new { status = "Healthy" }));
+app.MapGet("/health/db", async (Infrastructure.Persistence.ApplicationDbContext db) =>
+{
+    try
+    {
+        var can = await db.Database.CanConnectAsync();
+        return can ? Results.Ok(new { status = "Healthy" }) : Results.Problem(statusCode: 503, detail: "Database connection failed");
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(statusCode: 500, detail: ex.Message);
+    }
+});
 
 // Iniciar la aplicación
 app.Run();

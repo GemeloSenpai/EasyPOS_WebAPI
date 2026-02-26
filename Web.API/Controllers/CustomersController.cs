@@ -1,39 +1,28 @@
 using Application.Customers.Create;
+using ErrorOr;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.API.Controllers;
 
-/// <summary>
-/// Controlador para gestionar operaciones relacionadas con clientes.
-/// </summary>
 [ApiController]
 [Route("api/[controller]")]
-public class CustomersController : ControllerBase
+public class CustomersController : ApiController
 {
-    private readonly IMediator _mediator;
+   private readonly ISender _mediator;
 
-    /// <summary>
-    /// Constructor del controlador de clientes.
-    /// </summary>
-    /// <param name="mediator">Mediador para enviar comandos y queries</param>
-    public CustomersController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+   public CustomersController(ISender mediator)
+   {
+      _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+   }
 
-    /// <summary>
-    /// Crea un nuevo cliente en el sistema.
-    /// </summary>
-    /// <param name="command">Datos del cliente a crear</param>
-    /// <param name="cancellationToken">Token para cancelación de operación</param>
-    /// <returns>Respuesta de la operación</returns>
-    [HttpPost]
-    public async Task<IActionResult> CreateCustomer(
-        [FromBody] CreateCustomerCommand command,
-        CancellationToken cancellationToken = default)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok(new { message = "Cliente creado exitosamente" });
-    }
+   [HttpPost]
+   public async Task<IActionResult> Create([FromBody] CreateCustomerCommand command){
+      var createCustomerResult = await _mediator.Send(command);
+      
+      return createCustomerResult.Match(
+         customer => Ok(),
+         errors => Problem(errors)
+      );
+   }
 }
