@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Proyectos_C#\\EasyPOS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EF380AE5-9296-86D2-850D-67277842E67F}|Web.API\\Web.API.csproj|c:\\proyectos_c#\\easypos\\web.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF380AE5-9296-86D2-850D-67277842E67F}|Web.API\\Web.API.csproj|solutionrelative:web.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Proyectos_C#\\EasyPOS\\Web.API\\Program.cs",
+              "RelativeDocumentMoniker": "Web.API\\Program.cs",
+              "ToolTip": "C:\\Proyectos_C#\\EasyPOS\\Web.API\\Program.cs",
+              "RelativeToolTip": "Web.API\\Program.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:47:31.347Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

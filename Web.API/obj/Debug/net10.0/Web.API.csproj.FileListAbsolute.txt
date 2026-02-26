@@ -172,3 +172,4 @@ C:\Proyectos_C#\EasyPOS\Web.API\obj\Debug\net10.0\refint\Web.API.dll
 C:\Proyectos_C#\EasyPOS\Web.API\obj\Debug\net10.0\Web.API.pdb
 C:\Proyectos_C#\EasyPOS\Web.API\obj\Debug\net10.0\Web.API.genruntimeconfig.cache
 C:\Proyectos_C#\EasyPOS\Web.API\obj\Debug\net10.0\ref\Web.API.dll
+C:\Proyectos_C#\EasyPOS\Web.API\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
